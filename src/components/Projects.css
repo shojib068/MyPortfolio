@@ -1,0 +1,93 @@
+/* Project card cover — gradient placeholder behind the image */
+.project-cover {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ede9fe, #e0e7ff 55%, #dbeafe);
+}
+.project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.group:hover .project-cover img {
+  transform: scale(1.05);
+}
+
+/* Project details dialog */
+.project-dialog {
+  width: min(960px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: var(--radius-panel);
+  background: rgb(246 246 252 / 0.96);
+  box-shadow: 0 40px 80px -30px rgb(40 30 100 / 0.45);
+}
+.project-dialog[open] {
+  animation: dialog-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.project-dialog::backdrop {
+  background: rgb(13 14 26 / 0.35);
+  backdrop-filter: blur(6px);
+}
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Media viewer — frame around the active video or picture */
+.media-viewer {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 70dvh;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, #f1efff, #e6e8fb);
+  border: 1px solid #fff;
+}
+
+.media-fade {
+  animation: media-fade 0.4s ease;
+}
+
+@keyframes media-fade {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: none; }
+}
+
+.media-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 84px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  cursor: pointer;
+  transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.media-thumb:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.media-thumb--active {
+  opacity: 1;
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px -4px rgb(139 92 246 / 0.5);
+}
+
+.media-thumb__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  color: #fff;
+  background: rgb(13 14 26 / 0.25);
+}

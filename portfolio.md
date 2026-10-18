@@ -121,19 +121,24 @@ Exploring a mobile live-TV streaming application for Android and iOS, integratin
 
 *This project is in progress. Do not claim production scale or 10,000+ concurrent viewers until validated through load testing and deployment evidence.*
 
-### Applied Data Science & Machine Learning
-**Learning and project development**
+### Temenos T24 R22 — Locker Module Development
+**Core banking · R9 → R22 migration project** · Janata Bank PLC (via Nazihar IT Solutions)
 
-Building practical skills in Python-based data analysis and machine learning, with an interest in applying these techniques to financial risk and fraud prevention.
+Developed the Locker module as part of a Temenos T24 R9 → R22 migration, contributing to core banking modernization for enterprise banking.
 
-Potential portfolio direction:
-- Transaction-data exploration and data-quality analysis
-- Fraud-risk classification with careful handling of class imbalance
-- Model evaluation using precision, recall, PR-AUC, and cost-sensitive metrics
-- Explainability and human-review workflows
-- Privacy-aware, responsible use of synthetic or properly authorized data
+**My contributions**
+- ETD, VERSION and ENQUIRY development; MENU configuration
+- Java routines and InfoBasic routines
+- Service lifecycle and record lifecycle
 
-*Only list individual models, datasets, metrics, and results after completing and documenting the work.*
+**Key features**
+- Locker account management
+- Automated charge generation
+- Insurance processing
+- Validation logic
+- Background services
+
+**Technology:** Temenos T24, Java, TAFJ, InfoBasic, OFS.
 
 ---
 
@@ -195,7 +200,7 @@ Academic foundation in computer science, software engineering, algorithms, datab
 
 ---
 
-## Leadership & Community Involvement
+## Leadership & Community Involvement (shown on the site as "Social Services")
 
 ### Chittagong University Society for IT / Science Carnival activities
 - Participated in student-led technology and academic activities.
@@ -275,6 +280,90 @@ Recommended site implementation:
 - **Quality:** Lighthouse checks, metadata/Open Graph cards, sitemap, robots.txt, and a custom 404 page.
 - **Deployment:** Vercel, Netlify, or GitHub Pages depending on the framework.
 - **Analytics:** Privacy-conscious analytics only if needed; disclose tracking clearly.
+
+---
+
+## Site Design & Customization
+
+The website (React + Vite + Tailwind CSS v4) is styled after a frosted-glass, lavender "digital designer" reference: soft, airy and minimal, with large rounded glass panels on a pale lavender canvas, near-black pill buttons and a violet-to-periwinkle accent gradient.
+
+### Where things live
+| What | File |
+| --- | --- |
+| All text content (profile, experience, projects, skills, awards, social services, links) | `src/data/portfolio.js` |
+| Colours, fonts, radii, breakpoint and shared styles (`.panel`, `.card`, `.btn-dark`…) | `src/styles/index.css` (`@theme` block at the top) |
+| Section order | `src/App.jsx` |
+| One component per section | `src/components/*.jsx` |
+| Images | `public/` (profile photo, `public/projects/<project>/`, `public/social/`) |
+
+### Colours (CSS variables in `@theme`)
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--color-canvas` | `#eceef6` | Page background |
+| `--color-ink` | `#0d0e1a` | Headings, dark buttons, logo tile |
+| `--color-body` | `#4a4e63` | Paragraph text |
+| `--color-muted` | `#7c8095` | Secondary text |
+| `--color-accent` | `#8b5cf6` | Eyebrow labels, highlights, focus ring |
+| `--color-accent-2` | `#7c9cf8` | Second stop of the accent gradient |
+| `--color-panel` / `.glass` | white at 40–72% + 18px blur | Section panels, header, footer |
+| `--color-tile` | `rgb(255 255 255 / 0.7)` | Cards inside panels |
+
+Change a value once and every section follows (Tailwind classes such as `text-accent` and `bg-ink` read these tokens).
+
+### Fonts
+- **Headings:** Plus Jakarta Sans, weights 600–700, tight letter-spacing. The hero name is about 60px on desktop and section titles about 27px.
+- **Body:** Inter, 13–15px.
+- Loaded from Google Fonts in `index.html`. To swap fonts, change the `<link>` there and `--font-display` / `--font-sans` in `@theme`.
+
+### Shape and spacing
+- Panel radius `--radius-panel: 28px` and card radius `--radius-tile: 20px`. Buttons and chips are fully rounded.
+- Airy spacing: each section is one panel, with a small gap between panels.
+
+### Sections (in order)
+1. **Header:** fixed glass bar with the KS logo, name and role on the left; links (About, Experience, Projects, Skills, Achievements, Social Services, Contact) with an active white pill; and a "Let's Talk" call to action. Below 1024px it becomes a hamburger menu.
+2. **Hero:** "Hello, I'm" label, your name (slide-up reveal), typewriter role in gradient text, tagline, **View My Work** and **Get in Touch** buttons, and a "Worked with" row. On the right is your photo in a glass frame with floating CGPA and Hackathon cards.
+3. **About:** heading with four counting stat cards on the left; bio, education card and "More About Me" button on the right.
+4. **Experience:** three cards, each with a pastel icon tile, period badge, bullets and tags.
+5. **Selected Work:** three project cards (cover image, title, type and arrow button). Clicking one opens a dialog with the media gallery, features and tags. The thesis card comes after the projects.
+6. **Technologies I Use:** a row of eight tool tiles, then skill-group cards and Current Focus.
+7. **Awards & Recognition:** numbered step cards (01–04) and a row of certifications.
+8. **Social Services:** a carousel of image cards with previous/next buttons.
+9. **Contact:** heading, email, location and social links on the left; a form on the right that opens the visitor's email app with everything pre-filled (there is no backend). A glass orb sits behind the form.
+10. **Footer:** glass bar with the logo, social links and copyright.
+
+### Animations
+- **Preloader:** the KS mark pulses for about 0.7 seconds, then fades out (`Preloader.jsx`).
+- **Hero:** the name slides up line by line; the other hero items fade up in sequence.
+- **Scroll reveal:** sections fade up as they enter the viewport (`Reveal.jsx`).
+- **Hover effects:** cards lift, round arrow buttons turn dark and rotate, and project images zoom.
+- **Other motion:** floating glass orbs and stat cards, drifting background blobs, a scroll progress bar and counting numbers.
+- With `prefers-reduced-motion`, all motion is switched off.
+
+### Common edits
+- **Replace a social-service image:** put your photo in `public/social/` (16:10 works best) and change its `image` path in `socialServices` in `portfolio.js`.
+- **Add a project:** add an object to `projects` with `title`, `type`, `status`, `description`, `features`, `tags`, `cover` (card image) and `media` (gallery items `{ type: 'image' | 'video', src, alt, poster? }`).
+- **Change the hero stat cards:** edit the "3.68" and "#1 Champion" cards in `Hero.jsx`.
+- **Change the tool tiles:** edit the `featured` array at the top of `Skills.jsx`.
+- **Change the layout breakpoint:** edit `--breakpoint-md` (currently 760px) in `@theme`.
+- **Light/dark:** the site is light-only, like the reference.
+
+### Contact form → Google Sheets
+Messages from the contact form are added as rows to [this Google Sheet](https://docs.google.com/spreadsheets/d/1kytaVqcn9eNi6RiiX9UrZKZs1quNgRk5MZaOwBJOp8o/edit), in a tab called **Messages** with the columns Timestamp, Name, Email, Subject and Message. The tab is created automatically.
+
+One-time setup:
+1. Open the sheet and choose **Extensions → Apps Script**.
+2. Replace the editor's contents with `google-apps-script/contact-form.gs`, then save.
+3. Choose **Deploy → New deployment → Web app**, with *Execute as:* **Me** and *Who has access:* **Anyone**. Click **Deploy** and grant permission when asked.
+4. Copy the **Web app URL** (it ends in `/exec`) into `contactForm.endpoint` in `src/data/portfolio.js`, then rebuild.
+
+To check it's working, open the Web app URL in a browser. It should show `"Contact form endpoint is running."`
+
+After editing the script, use **Deploy → Manage deployments → Edit → New version**. This keeps the same URL.
+
+If `endpoint` is empty, the form opens the visitor's email app instead. A hidden "website" field catches spam bots.
+
+### Accessibility
+The site uses semantic sections and landmarks, alt text on images, and labels on form fields. Focus states are visible (violet outline). The menu and dialog can be used with the keyboard and closed with Escape, and reduced-motion preferences are respected.
 
 ---
 
