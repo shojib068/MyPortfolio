@@ -1,12 +1,15 @@
 // All portfolio content lives here, sourced from portfolio.md.
 // Edit this file to update the site — components only handle presentation.
 
+// Prefixes public/ files with the deploy base path (e.g. /MyPortfolio/ on GitHub Pages)
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export const profile = {
   name: 'Kawsar Ahmed Shojib',
   firstName: 'Kawsar',
   initials: 'KS',
   // Put your photo in the public/ folder and set its file name here (shown in the hero)
-  photo: '/profile.jpg',
+  photo: asset('profile.jpg'),
   roles: [
     'App Developer using Flutter',
     'Software Engineer',
@@ -130,13 +133,13 @@ export const projects = [
       'Glass-inspired UI with reusable widgets',
     ],
     tags: ['Flutter', 'Dart', 'Responsive UI'],
-    cover: '/projects/circle-network/screen-1.svg',
+    cover: asset('projects/circle-network/screen-1.svg'),
     // Replace these with your own files in public/projects/circle-network/
     media: [
-      { type: 'video', src: '/projects/demo-video.mp4', poster: '/projects/circle-network/video-poster.svg', alt: 'Demo video' },
-      { type: 'image', src: '/projects/circle-network/screen-1.svg', alt: 'Login screen' },
-      { type: 'image', src: '/projects/circle-network/screen-2.svg', alt: 'Home screen' },
-      { type: 'image', src: '/projects/circle-network/screen-3.svg', alt: 'Pay bill screen' },
+      { type: 'video', src: asset('projects/demo-video.mp4'), poster: asset('projects/circle-network/video-poster.svg'), alt: 'Demo video' },
+      { type: 'image', src: asset('projects/circle-network/screen-1.svg'), alt: 'Login screen' },
+      { type: 'image', src: asset('projects/circle-network/screen-2.svg'), alt: 'Home screen' },
+      { type: 'image', src: asset('projects/circle-network/screen-3.svg'), alt: 'Pay bill screen' },
     ],
   },
   {
@@ -152,13 +155,13 @@ export const projects = [
       'Load distribution and operational monitoring',
     ],
     tags: ['Flutter', 'HLS', 'API Integration'],
-    cover: '/projects/live-tv/screen-1.svg',
+    cover: asset('projects/live-tv/screen-1.svg'),
     // Replace these with your own files in public/projects/live-tv/
     media: [
-      { type: 'video', src: '/projects/demo-video.mp4', poster: '/projects/live-tv/video-poster.svg', alt: 'Demo video' },
-      { type: 'image', src: '/projects/live-tv/screen-1.svg', alt: 'Channel list' },
-      { type: 'image', src: '/projects/live-tv/screen-2.svg', alt: 'Player' },
-      { type: 'image', src: '/projects/live-tv/screen-3.svg', alt: 'Categories' },
+      { type: 'video', src: asset('projects/demo-video.mp4'), poster: asset('projects/live-tv/video-poster.svg'), alt: 'Demo video' },
+      { type: 'image', src: asset('projects/live-tv/screen-1.svg'), alt: 'Channel list' },
+      { type: 'image', src: asset('projects/live-tv/screen-2.svg'), alt: 'Player' },
+      { type: 'image', src: asset('projects/live-tv/screen-3.svg'), alt: 'Categories' },
     ],
   },
   {
@@ -178,10 +181,10 @@ export const projects = [
       'Service and record lifecycle',
     ],
     tags: ['Temenos T24', 'Java', 'TAFJ', 'InfoBasic', 'OFS'],
-    cover: '/projects/temenos-t24/1784798404763.jpeg',
+    cover: asset('projects/temenos-t24/1784798404763.jpeg'),
     // Replace or add files in public/projects/temenos-t24/
     media: [
-      { type: 'image', src: '/projects/temenos-t24/1784798404763.jpeg', alt: 'Locker module project overview' },
+      { type: 'image', src: asset('projects/temenos-t24/1784798404763.jpeg'), alt: 'Locker module project overview' },
     ],
   },
 ];
@@ -257,28 +260,28 @@ export const socialServices = [
     org: 'University of Chittagong 5th Convocation',
     period: '',
     text: 'Volunteered to support one of the university’s largest events.',
-    image: '/social/service-1.svg',
+    image: asset('social/service-1.svg'),
   },
   {
     title: 'Cadet',
     org: 'Bangladesh National Cadet Corps (BNCC)',
     period: '',
     text: 'Served as a BNCC cadet, building discipline, teamwork and service to the community.',
-    image: '/social/service-2.svg',
+    image: asset('social/service-2.svg'),
   },
   {
     title: 'Website Secretary',
     org: 'CUSS — University of Chittagong',
     period: '2024 — 2025',
     text: 'Managed the society’s website after serving as a general member from 2021 to 2024.',
-    image: '/social/service-3.svg',
+    image: asset('social/service-3.svg'),
   },
   {
     title: 'CBS & T24 Trainer',
     org: 'Nazihar IT Solutions',
     period: '',
     text: 'Delivered a two-day introduction to Core Banking Systems and Temenos T24 for interns.',
-    image: '/social/service-4.svg',
+    image: asset('social/service-4.svg'),
   },
 ];
 

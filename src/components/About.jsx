@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { profile, glance, education } from '../data/portfolio.js';
 import Section from './Section.jsx';
 import Reveal from './Reveal.jsx';
@@ -5,17 +6,37 @@ import Counter from './Counter.jsx';
 import { ArrowUpRight, Pin } from './Icons.jsx';
 
 export default function About() {
+  const [photoFailed, setPhotoFailed] = useState(false);
+
   return (
     <Section id="about">
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <Reveal>
-            <p className="eyebrow mb-2">About me</p>
-            <h2 className="text-2xl leading-tight font-bold sm:text-[1.7rem]">
-              Engineering software
-              <br />
-              for real-world problems
-            </h2>
+          <Reveal className="flex items-center gap-5">
+            <div className="glass shrink-0 overflow-hidden rounded-3xl p-1.5">
+              <div className="h-24 w-24 overflow-hidden rounded-[20px] bg-gradient-to-br from-violet-200 via-indigo-100 to-sky-100 sm:h-28 sm:w-28">
+                {profile.photo && !photoFailed ? (
+                  <img
+                    src={profile.photo}
+                    alt={`Portrait of ${profile.name}`}
+                    className="h-full w-full object-cover object-top"
+                    onError={() => setPhotoFailed(true)}
+                  />
+                ) : (
+                  <span className="grid h-full place-items-center font-display text-3xl font-bold text-white">
+                    {profile.initials}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div>
+              <p className="eyebrow mb-2">About me</p>
+              <h2 className="text-2xl leading-tight font-bold sm:text-[1.7rem]">
+                Engineering software
+                <br />
+                for real-world problems
+              </h2>
+            </div>
           </Reveal>
 
           <div className="mt-7 grid grid-cols-2 gap-3">
